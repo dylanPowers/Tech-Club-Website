@@ -1,0 +1,49 @@
+@import "bootstrap";
+@import url(http://fonts.googleapis.com/css?family=Poiret+One);
+@import url(http://fonts.googleapis.com/css?family=Droid+Sans:400,700);
+
+
+
+.push20 {
+    margin-top: 20px
+}
+
+.push50 {
+    margin-top: 50px
+}
+
+h1,h2 {
+    font-family: "Poiret One"
+}
+
+h1 {
+    font-size: 36px
+}
+
+h2, h3, h4, h5, h6 {
+    font-family: "Droid Sans";
+}
+
+.dropdown-hover:hover + ul.dropdown-menu {
+  display: block; 
+}
+
+.dropdown-hover + ul.dropdown-menu:hover {
+  display:block;
+}
+
+
+
+/*
+ * This is a manifest file that'll be compiled into application.css, which will include all the files
+ * listed below.
+ *
+ * Any CSS and SCSS file within this directory, lib/assets/stylesheets, vendor/assets/stylesheets,
+ * or vendor/assets/stylesheets of plugins, if any, can be referenced here using a relative path.
+ *
+ * You're free to add application-wide styles to this file and they'll appear at the top of the
+ * compiled file, but it's generally better to create a new file per style scope.
+ *
+ *= require_self
+ *= require_tree .
+ */

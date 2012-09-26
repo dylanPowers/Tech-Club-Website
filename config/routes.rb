@@ -1,9 +1,31 @@
 TechClubWebsite::Application.routes.draw do
+
+  get "front_page/index"
+
+  get "logout" => "sessions#destroy", :as => "logout"
+  get "login"  => "sessions#new",     :as => "login"
+
+  resources :sessions 
+
+  resources :profile_claims
+
+  resources :profiles
+
+  resources :users
+
   resources :posts
 
   resources :projects
 
-  resources :members
+
+  resources :profiles do
+    resources :profile_claims, :path => "claim"
+  end
+
+
+  root :to => "front_page#index"
+
+  match ":id" => "posts#show"
 
   # The priority is based upon order of creation:
   # first created -> highest priority.
@@ -54,7 +76,7 @@ TechClubWebsite::Application.routes.draw do
 
   # You can have the root of your site routed with "root"
   # just remember to delete public/index.html.
-  root :to => 'members#index'
+  # root :to => 'members#index'
 
   # See how all your routes lay out with "rake routes"
 

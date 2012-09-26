@@ -1,9 +1,32 @@
-<p id="notice"><%= notice %></p>
+<% flash.each do |alert, message| %>
+<div class="alert alert-<%= alert.to_s %>">
+  <button type="button" class="close" data-dismiss="alert">×</button>
+  <%= message %>
+</div>
+<% end %>
 
-<h2><%= @post.title %></h2>
-<p>Posted by <%= @post.author.first_name %> on <%= @post.formated_date %> | <span class="badge badge-info">4</span> <a href="#">comments</a></p>
-<%= @post.html.html_safe %>
-
+<% if @post %>
+<div class="row span12">
+  <h2><%= @post.title %></h2>
+</div>
+<div class="row span12" style="font-size:15px;margin-top: 15px;margin-bottom:15px">
+  <%= @post.html.html_safe %>
+</div>
+<div class="row span12">
+  <p>
+    <i class="icon-user"></i> by <a href="#"><%= @post.author.first_name %>
+    | <i class="icon-calendar"></i> <%= @post.formated_date %>
+    | <i class="icon-comment"></i> <a href="#">4 comments</a>
+    | <i class="icon-tags"></i> Tags : <a href="#"><span class="label label-info">tag</span></a>
+  </p>
+</div>
 
 <%= link_to 'Edit', edit_post_path(@post) %> |
 <%= link_to 'Back', posts_path %>
+<% else %>
+<div class="alert alert-block">
+  <h4>Op snap!</h4>
+  <p>It doesn't appear like there are any posts yet.</p>
+</div>
+
+<% end %>
