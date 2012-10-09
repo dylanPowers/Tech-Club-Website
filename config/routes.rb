@@ -5,6 +5,7 @@ TechClubWebsite::Application.routes.draw do
   get "logout" => "sessions#destroy", :as => "logout"
   get "login"  => "sessions#new",     :as => "login"
 
+
   resources :sessions 
 
   resources :profile_claims
@@ -25,7 +26,10 @@ TechClubWebsite::Application.routes.draw do
 
   root :to => "front_page#index"
 
+  match '/join', to: 'profile_claims#new'
   match ":id" => "posts#show"
+
+
 
   # The priority is based upon order of creation:
   # first created -> highest priority.
