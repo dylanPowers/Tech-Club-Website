@@ -1,11 +1,32 @@
 require 'spec_helper'
 
 describe "Users" do
-  describe "GET /users" do
-    it "works! (now write some real specs)" do
-      # Run the generator again with the --webrat flag if you want to use webrat methods/matchers
-      get users_path
-      response.status.should be(200)
-    end
-  end
+	subject { page }
+
+	describe "who join" do		
+		before {visit join_path}
+
+		describe "with an invalid email address" do
+			let(:submit) {"Create Profile claim"}
+
+			it "should not create a profile claim" do
+				expect {click_button submit}.not_to change(ProfileClaim, :count)
+			end
+			it "should not send an email" do
+				last_email.should be_nil
+			end
+		end
+
+		describe "with an @email.wsu.edu email address" do
+			before do
+				fill_in "Email", with: "butch.thecougar@email.wsu.edu"
+			end
+			it "should create a profile claim" do
+				expect { click_button submit }.to change(ProfileClaim, :count).by(1)
+			end
+			it "should send an email" do
+				last_email.to.should include(user.email)
+			end
+		end
+	end
 end
