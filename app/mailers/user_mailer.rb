@@ -8,6 +8,6 @@ class UserMailer < ActionMailer::Base
   #
   def profile_claim(profile_claim)
     @profile_claim = profile_claim
-    mail :to => profile_claim.email, :subject => "Profile Claim"
+    mail :to => profile_claim.email, :subject => "WSUTech Email Verification"
   end
 end

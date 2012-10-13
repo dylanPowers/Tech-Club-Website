@@ -13,5 +13,12 @@
 require 'spec_helper'
 
 describe ProfileClaim do
-  pending "add some examples to (or delete) #{__FILE__}"
+	describe "#send_profile_claim" do
+		let(:profile_claim) { FactoryGirl.create(:profile_claim) }
+
+		it "delivers email to user" do
+			profile_claim.send_profile_claim
+			last_email.to.should include(profile_claim.email)
+		end
+	end	
 end

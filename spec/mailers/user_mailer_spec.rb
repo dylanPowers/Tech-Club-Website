@@ -1,5 +1,10 @@
 require "spec_helper"
 
 describe UserMailer do
-  pending "add some examples to (or delete) #{__FILE__}"
+  describe "profile_claim" do
+  	let(:profile_claim) { Factory(:profile_claim) }
+  	let(:mail) { UserMailer.profile_claim(profile_claim) }
+
+  	
+  end
 end
