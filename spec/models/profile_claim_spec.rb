@@ -16,7 +16,7 @@ describe ProfileClaim do
 	describe "#send_profile_claim" do
 		let(:profile_claim) { FactoryGirl.create(:profile_claim) }
 
-		it "delivers email to user" do
+		it "should deliver email to the user" do
 			profile_claim.send_profile_claim
 			last_email.to.should include(profile_claim.email)
 		end
@@ -56,6 +56,7 @@ describe ProfileClaim do
 			@profile_claim.email = "butch.cougar@wsu.edu"
 			same_email = @profile_claim.dup
 			same_email.save
+			@profile_claim.email.upcase!
 			should_not be_valid
 		end
 	end
