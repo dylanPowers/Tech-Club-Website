@@ -14,6 +14,14 @@ class ProfileClaim < ActiveRecord::Base
   belongs_to :profile
 
   attr_accessible :email, :profile_id, :token
+
+  before_save { |profile_claim| profile_claim.email = email.downcase }
+
+  VALID_EMAIL_REGEX = /^\A[\w+\-.]+@(wsu.edu|email.wsu.edu|eecs.wsu.edu)$/i
+  validates :email, presence: true,
+            format: { with: VALID_EMAIL_REGEX },
+            uniqueness: { case_sensitive: false } # validates happens before 
+                                                  # the address can be downcased
   
   def send_profile_claim
     generate_token(:token)
